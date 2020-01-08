@@ -1,5 +1,7 @@
 package com.demo.demoProject.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Collections;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,12 +30,16 @@ public class HelloControllerTest {
     @Before
     public void init() {
         when(helloController.index())
-                .thenReturn("Hello world!!!");
+                .thenReturn(Collections.singletonList("Hello world!!!"));
+    }
+
+    private String asJsonString(final Object object) throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(object);
     }
 
     @Test
     public void index() throws Exception {
-        String expected = "Hello world!!!";
+        String expected = asJsonString(Collections.singletonList("Hello world!!!"));
         mockMvc
                 .perform(get("/"))
                 .andExpect(status().isOk())

@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/account")
+@RequestMapping(value = "/account")
 public class AccountController {
     private final AccountService accountService;
 
@@ -19,13 +20,13 @@ public class AccountController {
     }
 
     @Print
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public List<Account> getAll() {
         return accountService.getAll();
     }
 
     @Print
-    @GetMapping("/findById")
+    @GetMapping(value = "/findById")
     public Account findById(@RequestParam Long id) {
         return accountService.findById(id);
     }

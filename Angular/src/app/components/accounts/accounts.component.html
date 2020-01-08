@@ -1,0 +1,22 @@
+<div class="container">
+  <p *ngFor="let el of accounts;">{{el.id}} {{el.name}} {{el.surname}} {{el.email}}</p>
+  <div class="row">
+    <a (click)="getAccountByEmail('test@mail')" type="button"
+       class="btn btn-secondary stretched-link col-3">getAccountByEmail 1</a>
+    <a (click)="getAccountByEmail('jerry@mail')" type="button"
+       class="btn btn-primary stretched-link offset-1 col-3">getAccountByEmail 2</a>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <a (click)="getAccountById(1)" type="button" class="btn btn-primary
+    stretched-link col-3">getAccountById 1</a>
+
+    <a (click)="getAccountById(2)" type="button" class="btn btn-secondary
+     stretched-link offset-1 col-3">getAccountById 2</a>
+
+  </div>
+  <br>
+  <p *ngIf="account">{{account.name}} {{account.surname}} {{account.email}}</p>
+</div>
